@@ -377,12 +377,14 @@ body {
 }
 
 #menu-toggle {
+    display: block;
     font-size: 30px;
     background: none;
     border: none;
     color: white;
     cursor: pointer;
 }
+
 
 /* Menü Açıkken Görünecek */
 #mobile-nav {
@@ -1127,20 +1129,20 @@ body:not(.dark-mode) .contact-info a:hover {
         cursor: pointer;
     }
 
-    .nav-links {
-        display: none; /* Menü başta gizli */
-        flex-direction: column;
-        width: 100%;
-        background-color: white;
-        position: absolute;
-        top: 60px; /* Navbar yüksekliğine göre ayarla */
-        left: 0;
-        z-index: 1000;
-    }
-
-    .nav-links.open {
-        display: flex; /* Menü açılınca görünür */
-    }
+  #mobile-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 1000;
 }
+
+#mobile-nav.open {
+    display: flex;
+}
+
 
 
