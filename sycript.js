@@ -1,30 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let progressBars = document.querySelectorAll(".progress");
-
-    function animateBars() {
-        progressBars.forEach(bar => {
-            let targetWidth = bar.getAttribute("data-width");
-            if (targetWidth && bar.style.width !== targetWidth) {
-                bar.style.width = targetWidth;
-            }
-        });
-    }
-
-    function checkScroll() {
-        let skillsSection = document.getElementById("skills");
-        if (!skillsSection) return;
-
-        let sectionPos = skillsSection.getBoundingClientRect().top;
-        let screenPos = window.innerHeight / 1.3;
-
-        if (sectionPos < screenPos) {
-            animateBars();
-            window.removeEventListener("scroll", checkScroll);
-        }
-    }
-
-    window.addEventListener("scroll", checkScroll);
-});
 
 
 // 🎭 Scroll ile Animasyon
@@ -74,32 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-});
-
-window.addEventListener("scroll", function () {
-    const navbar = document.getElementById("navbar");
-    if (window.scrollY > 50) {
-        navbar.classList.add("navbar-scroll");
-    } else {
-        navbar.classList.remove("navbar-scroll");
-    }
-});
-
-document.querySelectorAll('nav ul li a').forEach(anchor => {
-    anchor.addEventListener("click", function (event) {
-        event.preventDefault();
-        let targetId = this.getAttribute("href").substring(1);
-        let targetElement = document.getElementById(targetId);
-
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 50,
-                behavior: "smooth"
-            });
-        } else {
-            console.warn(`⚠️ Target element with ID '${targetId}' not found.`);
-        }
-    });
 });
 
 
