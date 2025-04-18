@@ -114,14 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 500);
 });
 
-document.getElementById("language-select").addEventListener("change", function () {
-    const lang = this.value;
-    if (lang === "en") {
-        window.location.href = "index.html";  // İngilizce versiyon
-    } else if (lang === "de") {
-        window.location.href = "index-de.html"; // Almanca versiyon
-    }
-});
 
 document.addEventListener("DOMContentLoaded", function () {
     const languageSelect = document.getElementById("language-select");
