@@ -1,3 +1,14 @@
+const darkMode = localStorage.getItem("darkMode");
+
+if (darkMode === "enabled") {
+    document.body.classList.add("dark-mode");
+} else if (darkMode !== "disabled") {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark-mode');
+    }
+}
+
+
 document.addEventListener("DOMContentLoaded", function () {
     if (localStorage.getItem("darkMode") === "enabled") {
         document.body.classList.add("dark-mode");
@@ -6,18 +17,17 @@ document.addEventListener("DOMContentLoaded", function () {
             darkModeToggle.textContent = "☀ Light Mode";
         }
     }
-});
 
-
-document.addEventListener("DOMContentLoaded", function () {
-    initProgressBars();       // Skills barlarını başlat
-    initSectionReveal();      // Scroll ile bölümler açılacak
-    initNavbarScroll();       // Navbar scroll değişimi
-    initDarkModeToggle();     // Dark mode aktif
-    initMobileMenuToggle();   // Mobil menü aç/kapat
-    initLanguageSwitcher();   // Dil değişimi çalışacak
-    initHeroAnimation();      // Hero animasyonu
-    initEducationAnimation(); // Eğitim bölümü açılacak
+    initProgressBars();
+    initSectionReveal();
+    initNavbarScroll();
+    initDarkModeToggle();
+    initMobileMenuToggle();
+    initLanguageSwitcher();
+    initHeroAnimation();
+    initEducationAnimation();
+    initTypingEffect();
+    loadData(); // JSON verilerini yükle
 });
 
 
@@ -176,6 +186,36 @@ function initHeroAnimation() {
         }
     }, 500); // Yarım saniye sonra animasyonu başlat
 }
+
+function initTypingEffect() {
+    const lang = document.documentElement.lang; // Sayfa dili (en, de)
+    let text = "";
+
+    if (lang === "de") {
+        text = "Hallo, ich bin Ilker Yasin 👋🏻";
+    } else {
+        text = "Hi, I'm Ilker Yasin 👋🏻";
+    }
+
+    const speed = 100;
+    let i = 0;
+    const heading = document.querySelector(".hero-content h1");
+
+    if (!heading) return;
+
+    heading.textContent = "";
+
+    function typeWriter() {
+        if (i < text.length) {
+            heading.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        }
+    }
+
+    typeWriter();
+}
+
 
 function initEducationAnimation() {
     const educationSection = document.getElementById("education");
