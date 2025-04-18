@@ -143,8 +143,7 @@ function switchLanguage(lang) {
         window.location.href = "index.html";  // İngilizce sayfaya yönlendir
     } else if (lang === "de") {
         window.location.href = "index-de.html"; // Almanca sayfaya yönlendir
-   
-}
+ }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
