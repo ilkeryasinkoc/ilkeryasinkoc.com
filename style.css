@@ -1144,5 +1144,13 @@ body:not(.dark-mode) .contact-info a:hover {
     display: flex;
 }
 
+#mobile-nav li a {
+    color: black; /* Menü yazıları siyah görünür */
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    display: block;
+    text-align: center;
+}
 
 
