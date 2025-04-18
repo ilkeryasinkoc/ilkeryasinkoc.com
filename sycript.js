@@ -1,36 +1,72 @@
+// Wait for DOM to load completely
+document.addEventListener("DOMContentLoaded", () => {
+    // 🎭 Scroll Animation with Intersection Observer
+    const sections = document.querySelectorAll("section");
+    const observerOptions = { threshold: 0.1 }; // Trigger animations when 10% of the section is visible
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    }, observerOptions);
 
-// 🎭 Scroll ile Animasyon
-const sections = document.querySelectorAll("section");
-const revealOnScroll = () => {
-    let scrollY = window.scrollY + window.innerHeight * 0.8;
-    sections.forEach(section => {
-        if (section.offsetTop < scrollY) {
-            section.classList.add("show");
+    sections.forEach(section => observer.observe(section));
+
+    // 🏷️ Navbar Scroll Effect (Class-based)
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
         }
     });
-};
 
-window.addEventListener("scroll", revealOnScroll);
-revealOnScroll();
+    // 🌐 Language Switcher
+    const languageSwitcher = document.getElementById("language-switcher");
+    const switchLanguage = (lang) => {
+        const supportedLanguages = {
+            en: "index.html",
+            de: "index-de.html"
+        };
 
-// 🏷️ Navbar Scroll Efekti (Yumuşak Geçiş)
-window.addEventListener("scroll", function () {
-    const navbar = document.getElementById("navbar");
-    if (window.scrollY > 50) {
-        navbar.style.transition = "background 0.3s ease-in-out";
-        navbar.style.background = "rgba(0, 85, 170, 1)";
-    } else {
-        navbar.style.background = "rgba(0, 119, 204, 0.9)";
+        if (supportedLanguages[lang]) {
+            window.location.href = supportedLanguages[lang];
+        } else {
+            console.error("Unsupported language:", lang);
+        }
+    };
+
+    if (languageSwitcher) {
+        languageSwitcher.addEventListener("change", (event) => {
+            switchLanguage(event.target.value);
+        });
     }
+
+    // 🌗 Light/Dark Mode Toggle
+    const themeToggle = document.getElementById("theme-toggle");
+    const currentTheme = localStorage.getItem("theme") || "light";
+
+    const applyTheme = (theme) => {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    };
+
+    applyTheme(currentTheme); // Apply saved theme on load
+
+    themeToggle?.addEventListener("click", () => {
+        const newTheme = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+        applyTheme(newTheme);
+    });
+
+    // 📱 Mobile Navigation Toggle
+    const mobileNavToggle = document.getElementById("mobile-nav-toggle");
+    const mobileNav = document.getElementById("mobile-nav");
+
+    mobileNavToggle?.addEventListener("click", () => {
+        mobileNav.classList.toggle("open");
+    });
 });
-
-
-function switchLanguage(lang) {
-    if (lang === "en") {
-        window.location.href = "index.html";  // İngilizce sayfaya yönlendir
-    } else if (lang === "de") {
-        window.location.href = "index-de.html"; // Almanca sayfaya yönlendir
- }
-}
-
