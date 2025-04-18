@@ -120,15 +120,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (languageSelect) {
         languageSelect.addEventListener("change", function () {
-            const lang = this.value;
-            if (lang === "en") {
-                window.location.href = "index.html";  // İngilizce sayfaya yönlendirme
-            } else if (lang === "de") {
-                window.location.href = "index-de.html"; // Almanca sayfaya yönlendirme
-    }
-});
-    }
-});
+    const lang = this.value;
+    if (lang === "en") {
+        window.location.href = "index.html"; // İngilizce
+   else if (lang === "de") {
+    window.location.href = "index-de.html"; // Almanca sayfaya yönlendir
+
+}
     
 
 document.addEventListener("DOMContentLoaded", function () {
