@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
+    if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+        if (darkModeToggle) {
+            darkModeToggle.textContent = "☀ Light Mode";
+        }
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
     initProgressBars();       // Skills barlarını başlat
     initSectionReveal();      // Scroll ile bölümler açılacak
     initNavbarScroll();       // Navbar scroll değişimi
