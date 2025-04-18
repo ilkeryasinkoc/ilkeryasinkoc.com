@@ -102,39 +102,7 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(() => {
-        let heroSection = document.querySelector(".hero-content");
-        if (heroSection) {
-            document.body.classList.add("loaded");
-            console.log("✅ Animation triggered for .hero-content");
-        } else {
-            console.warn("⚠️ .hero-content not found!");
-        }
-    }, 500);
-});
 
-
-document.addEventListener("DOMContentLoaded", function () {
-    const languageSelect = document.getElementById("language-select");
-
-    if (languageSelect) {
-        languageSelect.addEventListener("change", function () {
-    const lang = this.value;
-    if (lang === "en") {
-        window.location.href = "index.html"; // İngilizce
-   else if (lang === "de") {
-    window.location.href = "index-de.html"; // Almanca sayfaya yönlendir
-
-}
-    
-
-document.addEventListener("DOMContentLoaded", function () {
-    let lang = document.documentElement.lang; // Sayfanın dilini kontrol et
-    if (lang === "de") {
-        document.body.classList.add("german-version"); // Eğer Almanca ise 'german-version' ekle
-    }
-});
 
 function switchLanguage(lang) {
     if (lang === "en") {
