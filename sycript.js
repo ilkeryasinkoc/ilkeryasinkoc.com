@@ -76,28 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
-document.addEventListener("DOMContentLoaded", function () {
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileNav = document.getElementById("mobile-nav");
-
-    if (menuToggle && mobileNav) {
-        // Menü butonuna tıklayınca aç/kapat
-        menuToggle.addEventListener("click", function (event) {
-            event.stopPropagation(); // Menüye tıklayınca dış tıklama olayını durdur
-            mobileNav.classList.toggle("open");
-        });
-
-        // Sayfanın herhangi başka bir yerine tıklanınca menüyü kapat
-        document.addEventListener("click", function (event) {
-            if (!mobileNav.contains(event.target) && !menuToggle.contains(event.target)) {
-                mobileNav.classList.remove("open");
-            }
-        });
-    }
-});
-
-
 window.addEventListener("scroll", function () {
     const navbar = document.getElementById("navbar");
     if (window.scrollY > 50) {
@@ -231,5 +209,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.body.classList.remove("no-scroll");
             }
         });
+
+        document.addEventListener("click", function (event) {
+            if (!mobileNav.contains(event.target) && !menuToggle.contains(event.target)) {
+                mobileNav.classList.remove("open");
+                document.body.classList.remove("no-scroll");
+            }
+        });
     }
-});  // <-- En son burada kapanıyor
+});
+
