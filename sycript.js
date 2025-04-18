@@ -46,21 +46,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 🌗 Light/Dark Mode Toggle
-    const themeToggle = document.getElementById("theme-toggle");
-    const currentTheme = localStorage.getItem("theme") || "light";
+   // 🌗 Geliştirilmiş Light/Dark Mode Toggle
+const themeToggle = document.getElementById("theme-toggle");
+const currentTheme = localStorage.getItem("theme") || "light";
 
-    const applyTheme = (theme) => {
-        document.documentElement.setAttribute("data-theme", theme);
-        localStorage.setItem("theme", theme);
-    };
+const applyTheme = (theme) => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
 
-    applyTheme(currentTheme); // Apply saved theme on load
+    // Mobil ve masaüstü için durum güncellemesi
+    if (themeToggle) {
+        themeToggle.textContent = theme === "light" ? "Dark Mode" : "Light Mode";
+    }
+};
 
-    themeToggle?.addEventListener("click", () => {
-        const newTheme = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
-        applyTheme(newTheme);
-    });
+// Sayfa yüklenirken kaydedilen temayı uygula
+applyTheme(currentTheme);
+
+// Tema değiştirici buton
+themeToggle?.addEventListener("click", () => {
+    const newTheme = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    applyTheme(newTheme);
+});
+
+// Mobil destek: Tema durumunu kontrol et
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    const systemTheme = e.matches ? "dark" : "light";
+    applyTheme(systemTheme); // Sistem teması değiştiğinde uygula
+});
 
     // 📱 Mobile Navigation Toggle
     const mobileNavToggle = document.getElementById("mobile-nav-toggle");
