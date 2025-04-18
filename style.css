@@ -367,6 +367,58 @@ body {
     filter: blur(0);
 }
 
+/* 📱 Mobil Menü Stilleri */
+#mobile-menu {
+    display: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1001;
+}
+
+#menu-toggle {
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Menü Açıkken Görünecek */
+#mobile-nav {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 15px;
+    background: rgba(0, 119, 204, 0.9);
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#mobile-nav li {
+    list-style: none;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#mobile-nav li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    transition: color 0.3s;
+}
+
+#mobile-nav li a:hover {
+    color: #ffcc00;
+}
+
+/* Açık Menü */
+#mobile-nav.open {
+    display: block;
+}
 
 /* 📱 Sadece Mobilde Göster */
 @media (max-width: 768px) {
@@ -628,6 +680,30 @@ body {
     position: absolute;
     left: 0;
 }
+
+#certificates ul {
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+}
+
+#certificates ul li {
+    background: linear-gradient(135deg, #0077cc, #0055aa);
+    color: white;
+    margin: 10px auto;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+    max-width: 600px;
+}
+
+#certificates ul li:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #0055aa, #003d80);
+}
+
 
 /* 🚀 Projeler Bölümü */
 .projects-grid {
@@ -1066,37 +1142,6 @@ body:not(.dark-mode) .contact-info a:hover {
 
 .no-scroll {
     overflow: hidden;
-}
-
-/* Mobil ekranlar için menüyü ayarlıyoruz */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block; /* hamburger ikonu görünür */
-        cursor: pointer;
-    }
-
-  #mobile-nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: white;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    z-index: 1000;
-}
-
-#mobile-nav.open {
-    display: flex;
-}
-
-#mobile-nav li a {
-    color: black; /* Menü yazıları siyah görünür */
-    text-decoration: none;
-    font-size: 18px;
-    padding: 10px;
-    display: block;
-    text-align: center;
 }
 
 
