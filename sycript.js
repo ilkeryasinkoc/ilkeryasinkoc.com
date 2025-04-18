@@ -1,4 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
+    initProgressBars();       // Skills barlarını başlat
+    initSectionReveal();      // Scroll ile bölümler açılacak
+    initNavbarScroll();       // Navbar scroll değişimi
+    initDarkModeToggle();     // Dark mode aktif
+    initMobileMenuToggle();   // Mobil menü aç/kapat
+    initLanguageSwitcher();   // Dil değişimi çalışacak
+    initHeroAnimation();      // Hero animasyonu
+    initEducationAnimation(); // Eğitim bölümü açılacak
+});
+
+
+    
+function initProgressBars() {
     let progressBars = document.querySelectorAll(".progress");
 
     function animateBars() {
@@ -10,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function checkScroll() {
+    function checkSkillsScroll() {
         let skillsSection = document.getElementById("skills");
         if (!skillsSection) return;
 
@@ -19,93 +32,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (sectionPos < screenPos) {
             animateBars();
-            window.removeEventListener("scroll", checkScroll);
+            window.removeEventListener("scroll", checkSkillsScroll);
         }
     }
 
-    window.addEventListener("scroll", checkScroll);
-});
+    window.addEventListener("scroll", checkSkillsScroll);
+}
 
 
-// 🎭 Scroll ile Animasyon
-const sections = document.querySelectorAll("section");
-const revealOnScroll = () => {
-    let scrollY = window.scrollY + window.innerHeight * 0.8;
-    sections.forEach(section => {
-        if (section.offsetTop < scrollY) {
-            section.classList.add("show");
-        }
-    });
-};
-
-window.addEventListener("scroll", revealOnScroll);
-revealOnScroll();
-
-// 🏷️ Navbar Scroll Efekti (Yumuşak Geçiş)
-window.addEventListener("scroll", function () {
-    const navbar = document.getElementById("navbar");
-    if (window.scrollY > 50) {
-        navbar.style.transition = "background 0.3s ease-in-out";
-        navbar.style.background = "rgba(0, 85, 170, 1)";
-    } else {
-        navbar.style.background = "rgba(0, 119, 204, 0.9)";
-    }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const darkModeToggle = document.getElementById("dark-mode-toggle");
-    const body = document.body;
-
-    if (localStorage.getItem("darkMode") === "enabled") {
-        body.classList.add("dark-mode");
-        darkModeToggle.textContent = "☀ Light Mode";
-    }
-
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener("click", function () {
-            body.classList.toggle("dark-mode");
-
-            if (body.classList.contains("dark-mode")) {
-                localStorage.setItem("darkMode", "enabled");
-                darkModeToggle.textContent = "☀ Light Mode";
-            } else {
-                localStorage.setItem("darkMode", "disabled");
-                darkModeToggle.textContent = "🌙 Dark Mode";
-            }
-        });
-    }
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileNav = document.getElementById("mobile-nav");
-
-    if (menuToggle && mobileNav) {
-        // Menü butonuna tıklayınca aç/kapat
-        menuToggle.addEventListener("click", function (event) {
-            event.stopPropagation(); // Menüye tıklayınca dış tıklama olayını durdur
-            mobileNav.classList.toggle("open");
-        });
-
-        // Sayfanın herhangi başka bir yerine tıklanınca menüyü kapat
-        document.addEventListener("click", function (event) {
-            if (!mobileNav.contains(event.target) && !menuToggle.contains(event.target)) {
-                mobileNav.classList.remove("open");
-            }
-        });
-    }
-});
-
-
-window.addEventListener("scroll", function () {
-    const navbar = document.getElementById("navbar");
-    if (window.scrollY > 50) {
-        navbar.classList.add("navbar-scroll");
-    } else {
-        navbar.classList.remove("navbar-scroll");
-    }
-});
 
 document.querySelectorAll('nav ul li a').forEach(anchor => {
     anchor.addEventListener("click", function (event) {
@@ -124,7 +58,103 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+function initSectionReveal() {
+    const sections = document.querySelectorAll("section");
+
+    function revealOnScroll() {
+        let scrollY = window.scrollY + window.innerHeight * 0.8;
+        sections.forEach(section => {
+            if (section.offsetTop < scrollY) {
+                section.classList.add("show");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll(); // Sayfa açılır açılmaz kontrol etsin
+}
+
+function initNavbarScroll() {
+    const navbar = document.getElementById("navbar");
+
+    function handleNavbarScroll() {
+        if (window.scrollY > 50) {
+            navbar.classList.add("navbar-scroll");
+        } else {
+            navbar.classList.remove("navbar-scroll");
+        }
+    }
+
+    window.addEventListener("scroll", handleNavbarScroll);
+    handleNavbarScroll(); // Sayfa açılınca da hemen kontrol etsin
+}
+
+function initDarkModeToggle() {
+    const darkModeToggle = document.getElementById("dark-mode-toggle");
+    const body = document.body;
+
+    if (!darkModeToggle) return; // Buton yoksa çık
+
+    // Sayfa açıldığında localStorage kontrolü
+    if (localStorage.getItem("darkMode") === "enabled") {
+        body.classList.add("dark-mode");
+        darkModeToggle.textContent = "☀ Light Mode";
+    }
+
+    darkModeToggle.addEventListener("click", function () {
+        body.classList.toggle("dark-mode");
+
+        if (body.classList.contains("dark-mode")) {
+            localStorage.setItem("darkMode", "enabled");
+            darkModeToggle.textContent = "☀ Light Mode";
+        } else {
+            localStorage.setItem("darkMode", "disabled");
+            darkModeToggle.textContent = "🌙 Dark Mode";
+        }
+    });
+}
+
+function initMobileMenuToggle() {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileNav = document.getElementById("mobile-nav");
+
+    if (!menuToggle || !mobileNav) return; // Eğer buton ya da menü yoksa çık
+
+    menuToggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+        mobileNav.classList.toggle("open");
+
+        if (mobileNav.classList.contains("open")) {
+            document.body.classList.add("no-scroll");
+        } else {
+            document.body.classList.remove("no-scroll");
+        }
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!mobileNav.contains(event.target) && !menuToggle.contains(event.target)) {
+            mobileNav.classList.remove("open");
+            document.body.classList.remove("no-scroll");
+        }
+    });
+}
+
+function initLanguageSwitcher() {
+    const languageSelect = document.getElementById("language-select");
+
+    if (!languageSelect) return; // Dil seçimi menüsü yoksa çık
+
+    languageSelect.addEventListener("change", function () {
+        const selectedLang = this.value;
+        if (selectedLang === "en") {
+            window.location.href = "index.html"; // İngilizce sayfa
+        } else if (selectedLang === "de") {
+            window.location.href = "index-de.html"; // Almanca sayfa
+        }
+    });
+}
+
+function initHeroAnimation() {
     setTimeout(() => {
         let heroSection = document.querySelector(".hero-content");
         if (heroSection) {
@@ -133,103 +163,22 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             console.warn("⚠️ .hero-content not found!");
         }
-    }, 500);
-});
-
-document.getElementById("language-select").addEventListener("change", function () {
-    const lang = this.value;
-    if (lang === "en") {
-        window.location.href = "index.html";  // İngilizce versiyon
-    } else if (lang === "de") {
-        window.location.href = "index-de.html"; // Almanca versiyon
-    }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const languageSelect = document.getElementById("language-select");
-
-    if (languageSelect) {
-        languageSelect.addEventListener("change", function () {
-            const lang = this.value;
-            if (lang === "en") {
-                window.location.href = "index.html";  // İngilizce sayfaya yönlendirme
-            } else if (lang === "de") {
-                window.location.href = "index-de.html"; // Almanca sayfaya yönlendirme
-    }
-});
-    }
-});
-    
-
-document.addEventListener("DOMContentLoaded", function () {
-    let lang = document.documentElement.lang; // Sayfanın dilini kontrol et
-    if (lang === "de") {
-        document.body.classList.add("german-version"); // Eğer Almanca ise 'german-version' ekle
-    }
-});
-
-function switchLanguage(lang) {
-    if (lang === "en") {
-        window.location.href = "index.html";  // İngilizce sayfaya yönlendir
-    } else if (lang === "de") {
-        window.location.href = "index-de.html"; // Almanca sayfaya yönlendir
-   
-}
+    }, 500); // Yarım saniye sonra animasyonu başlat
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    let educationSection = document.getElementById("education");
+function initEducationAnimation() {
+    const educationSection = document.getElementById("education");
 
-    function checkScroll() {
+    if (!educationSection) return; // Eğer education bölümü yoksa çık
+
+    function revealEducationOnScroll() {
         let rect = educationSection.getBoundingClientRect();
         if (rect.top < window.innerHeight - 100) {
             educationSection.classList.add("show");
+            window.removeEventListener("scroll", revealEducationOnScroll); // Bir kere tetiklensin
         }
     }
 
-    // Sayfa yüklenince ve scroll yapıldığında kontrol et
-    window.addEventListener("scroll", checkScroll);
-    checkScroll();
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    let educationSection = document.getElementById("education");
-
-    function checkScroll() {
-        let rect = educationSection.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-            educationSection.classList.add("show");
-        }
-    }
-
-    // Sayfa yüklenince ve scroll yapıldığında kontrol et
-    window.addEventListener("scroll", checkScroll);
-    checkScroll();
-});
-
-window.addEventListener("scroll", function () {
-    const navbar = document.getElementById("navbar");
-    if (window.scrollY > 50) {
-        navbar.classList.add("navbar-scroll");
-    } else {
-        navbar.classList.remove("navbar-scroll");
-    }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileNav = document.getElementById("mobile-nav");
-
-    if (menuToggle && mobileNav) {
-        menuToggle.addEventListener("click", function (event) {
-            event.stopPropagation();
-            mobileNav.classList.toggle("open");
-
-            if (mobileNav.classList.contains("open")) {
-                document.body.classList.add("no-scroll");
-            } else {
-                document.body.classList.remove("no-scroll");
-            }
-        });
-    }
-});  // <-- En son burada kapanıyor
+    window.addEventListener("scroll", revealEducationOnScroll);
+    revealEducationOnScroll(); // Sayfa açılır açılmaz kontrol et
+}
