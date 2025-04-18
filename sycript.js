@@ -170,21 +170,6 @@ document.addEventListener("DOMContentLoaded", function () {
     checkScroll();
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    let educationSection = document.getElementById("education");
-
-    function checkScroll() {
-        let rect = educationSection.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-            educationSection.classList.add("show");
-        }
-    }
-
-    // Sayfa yüklenince ve scroll yapıldığında kontrol et
-    window.addEventListener("scroll", checkScroll);
-    checkScroll();
-});
-
 window.addEventListener("scroll", function () {
     const navbar = document.getElementById("navbar");
     if (window.scrollY > 50) {
