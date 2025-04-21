@@ -1,0 +1,34 @@
+{
+  "name": "Ilker Yasin Koc",
+  "title": "Media Informatics Student | Web & Graphic Designer",
+  "about": "I am a media informatics student with a passion for web design, media editing, and digital content creation.",
+  "skills": [
+      {"name": "HTML & CSS", "level": "⭐⭐⭐⭐⭐"},
+      {"name": "JavaScript", "level": "⭐⭐⭐⭐"},
+      {"name": "Photoshop & Canva", "level": "⭐⭐⭐⭐"},
+      {"name": "Video Editing", "level": "⭐⭐⭐⭐"},
+      {"name": "WordPress", "level": "⭐⭐⭐⭐"},
+      {"name": "Adobe Premiere", "level": "⭐⭐⭐"},
+      {"name": "Python", "level": "⭐⭐⭐"}
+  ],
+  "experience": [
+      {"company": "Deutsche Post", "position": "Sorter", "years": "2023 - 2024"},
+      {"company": "Kaufland", "position": "Sales Assistant", "years": "2022 - 2023"},
+      {"company": "Restaurant Bremen", "position": "Waiter", "years": "2022"},
+      {"company": "XYZ Company Istanbul", "position": "Intern", "years": "2021 - 2022"}
+  ],
+
+  "contact": {
+    "address": "Luisental 29, 28359 Bremen, Germany",
+    "google_maps": "https://www.google.com/maps/place/Luisental+29,+28359+Bremen,+Germany/",
+    "email": "ilkerkoc2003@gmail.com",
+    "phone": "+49 1522 2119873",
+    "linkedin": "https://www.linkedin.com/in/ilker-yasin-koc-3a08a2185/",
+    "cv": "ilkeryasinkoclebenslauf.pdf",
+    "profile_pic": "ilkeryasinkocfoto.webp"
+}
+}
+
+
+
+
