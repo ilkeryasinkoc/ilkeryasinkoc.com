@@ -52,7 +52,7 @@
             </ul>
     
             <div class="nav-right">
-                <select id="language-select" onchange="switchLanguage(this.value)">
+                <select id="language-select">
                     <option value="en">🇬🇧 English</option>
                     <option value="de" selected>🇩🇪 Deutsch</option>
                 </select>
@@ -60,8 +60,28 @@
             </div>
         </div>
     </nav>
-    
 
+    <!-- 📱 Mobil Menü -->
+<div id="mobile-menu">
+    <button id="menu-toggle">☰</button>
+    <ul id="mobile-nav">
+        <li><a href="#hero">Startseite</a></li>
+        <li><a href="#about">Über mich</a></li>
+        <li><a href="#skills">Fähigkeiten</a></li>
+        <li><a href="#experience">Erfahrungen</a></li>
+        <li><a href="#education">Bildung</a></li>
+        <li><a href="#certificates">Zertifikate</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+        <select id="mobile-language-select">
+            <option value="en" selected>🇬🇧 English</option>
+            <option value="de">🇩🇪 Deutsch</option>
+        </select>
+        <button id="mobile-dark-mode-toggle">🌙 Dark Mode</button>
+    </div>
+</div>
+    </ul>
+
+    
     <section id="hero">
         <div class="hero-content">
             <h1>Hallo, ich bin <span>Ilker Yasin</span> 👋🏻</h1>
@@ -308,26 +328,10 @@
     </section>
     
     
-    <style>
-        .linkedin-button {
-            display: inline-block;
-            background-color: #0073b1;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-            margin-top: 10px;
-        }
-    
-        .linkedin-button:hover {
-            background-color: #005a8e;
-        }
-    </style>
     
 <!-- 🔝 Back to Top Button -->
-<button id="back-to-top" title="Nach oben">🔝</button>
+<button id="back-to-top" title="Go to top" aria-label="Back to top">🔝</button>
+
 
     <footer>
         <p>&copy; 2024 Ilker Yasin Koc. Alle Rechte vorbehalten.</p>
@@ -336,4 +340,3 @@
     </footer>
     
     <script src="script.js" defer></script>
-
